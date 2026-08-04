@@ -267,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "Lần 5/8: Hơn nửa đường rồi nè bà chã 👀",
     "Lần 6/8: Anh yêu Duyên nhiều lắm đó 💙",
     "Lần 7/8: Còn đúng một lần cuối thôi!",
-    "Lần 8/8: Anh yêu bà chã Duyên nhất <3"
+    "Lần 8/8: Anh yêu bà chã Duyên nhất ❤️"
   ];
 
   let heartClickCount = 0;
