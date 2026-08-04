@@ -257,17 +257,71 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+    /* Nhấp trái tim đủ 8 lần */
+
+  const heartMessages = [
+    "Lần 1/8: Một cái nhấp nhẹ từ bà chã 💙",
+    "Lần 2/8: Bấy bì của anh giỏi quá =))))",
+    "Lần 3/8: Nhấp tiếp đi, chưa tới bí mật đâu 😚",
+    "Lần 4/8: Gần 4 tháng của hai đứa mình đó ✨",
+    "Lần 5/8: Hơn nửa đường rồi nè bà chã 👀",
+    "Lần 6/8: Anh yêu Duyên nhiều lắm đó 💙",
+    "Lần 7/8: Còn đúng một lần cuối thôi!",
+    "Lần 8/8: Anh yêu bà chã Duyên nhất <3"
+  ];
+
+  let heartClickCount = 0;
+
+  if (heartInstruction) {
+    heartInstruction.textContent =
+      "Nhấp vào trái tim 8 lần đi bà chã 💙 (0/8)";
+    heartInstruction.hidden = false;
+  }
+
+  if (finalMessage) {
+    finalMessage.hidden = true;
+  }
+
   if (finalHeart) {
     finalHeart.addEventListener("click", function () {
-      if (heartInstruction) {
-        heartInstruction.hidden = true;
+      if (heartClickCount >= heartMessages.length) {
+        return;
       }
 
-      if (finalMessage) {
-        finalMessage.hidden = false;
-      }
+      heartClickCount += 1;
 
       createHeartParticles();
+
+      finalHeart.animate(
+        [
+          { transform: "scale(1)" },
+          { transform: "scale(1.25)" },
+          { transform: "scale(1)" }
+        ],
+        {
+          duration: 350,
+          easing: "ease-out"
+        }
+      );
+
+      if (heartInstruction) {
+        heartInstruction.hidden = false;
+        heartInstruction.textContent =
+          heartMessages[heartClickCount - 1];
+      }
+
+      if (heartClickCount === heartMessages.length) {
+        if (finalMessage) {
+          finalMessage.hidden = false;
+        }
+
+        finalHeart.setAttribute(
+          "aria-label",
+          "Đã nhấp đủ 8 lần"
+        );
+
+        finalHeart.style.cursor = "default";
+      }
     });
   }
 });
