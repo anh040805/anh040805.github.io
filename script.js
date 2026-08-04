@@ -78,7 +78,73 @@ document.addEventListener("DOMContentLoaded", function () {
     if (minutesElement) minutesElement.textContent = addZero(minutes);
     if (secondsElement) secondsElement.textContent = addZero(seconds);
   }
+  /* Tạo hoa, lá và tim bay */
 
+  function createFlowerLayer() {
+    if (document.querySelector(".flower-layer")) return;
+
+    const flowerLayer = document.createElement("div");
+    const decorations = [
+      "🌸",
+      "🌼",
+      "🪻",
+      "🌷",
+      "🌿",
+      "💙",
+      "💜",
+      "✨"
+    ];
+
+    const isMobile = window.matchMedia(
+      "(max-width: 720px)"
+    ).matches;
+
+    const flowerCount = isMobile ? 14 : 24;
+
+    flowerLayer.className = "flower-layer";
+    flowerLayer.setAttribute("aria-hidden", "true");
+
+    for (let i = 0; i < flowerCount; i++) {
+      const flower = document.createElement("span");
+      const duration = 11 + Math.random() * 9;
+
+      flower.className = "floating-flower";
+      flower.textContent =
+        decorations[
+          Math.floor(Math.random() * decorations.length)
+        ];
+
+      flower.style.setProperty(
+        "--left",
+        `${Math.random() * 100}%`
+      );
+
+      flower.style.setProperty(
+        "--flower-size",
+        `${14 + Math.random() * 16}px`
+      );
+
+      flower.style.setProperty(
+        "--drift",
+        `${Math.random() * 100 - 50}px`
+      );
+
+      flower.style.setProperty(
+        "--drift-back",
+        `${Math.random() * 100 - 50}px`
+      );
+
+      flower.style.animationDuration = `${duration}s`;
+      flower.style.animationDelay =
+        `-${Math.random() * duration}s`;
+
+      flowerLayer.appendChild(flower);
+    }
+
+    document.body.appendChild(flowerLayer);
+  }
+
+  createFlowerLayer();
   updateLoveCounter();
   setInterval(updateLoveCounter, 1000);
 
@@ -209,7 +275,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const centerX = heartPosition.left + heartPosition.width / 2;
     const centerY = heartPosition.top + heartPosition.height / 2;
 
-    const symbols = ["💙", "💙", "✨", "💫"];
+    const symbols = [
+  "💙",
+  "💜",
+  "🩷",
+  "🌸",
+  "🌼",
+  "🪻",
+  "✨",
+  "💫"
+];
 
     for (let i = 0; i < 24; i++) {
       const particle = document.createElement("span");
