@@ -839,3 +839,32 @@ section {
   line-height: 1.12;
   letter-spacing: -0.035em;
 }
+/* Căn chính giữa trái tim trên điện thoại */
+
+.final-heart {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  text-align: center !important;
+  text-indent: 0 !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.final-heart > span {
+  display: none !important;
+}
+
+.final-heart::before {
+  content: "♥";
+  display: block;
+  margin: 0;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 64px;
+  line-height: 1;
+  transform: translateY(-1px);
+}
