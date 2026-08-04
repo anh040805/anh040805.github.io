@@ -19,8 +19,8 @@
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="style.css?v=14">
-<script src="script.js?v=14" defer></script>
+  <link rel="stylesheet" href="style.css?v=15">
+<script src="script.js?v=15" defer></script>
 </head>
 
 <body>
@@ -298,12 +298,13 @@
   </main>
 
   <!-- Nhạc Có Em – Madihu ft. Low G -->
-  <iframe
-    id="musicPlayer"
-    class="music-player"
-    title="Có Em — Madihu ft. Low G"
-    data-src="https://www.youtube.com/embed/DcCISK3sCYg?autoplay=1&loop=1&playlist=DcCISK3sCYg&controls=0"
-    allow="autoplay; encrypted-media"
-  ></iframe>
+  <audio
+  id="musicPlayer"
+  class="music-player"
+  loop
+  preload="auto"
+>
+  <source src="./music.mp3" type="audio/mpeg">
+</audio>
 </body>
 </html>
