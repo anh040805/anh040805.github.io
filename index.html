@@ -1,1 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#031a37">
 
+  <title>Duyên & Bu — Gần 4 tháng bên nhau</title>
+  <meta
+    name="description"
+    content="Một món quà nhỏ của ông chã Bu gửi đến bà chã Duyên."
+  >
+
+  <!-- Font có đầy đủ dấu tiếng Việt -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <!-- Nền trời sao -->
+  <div class="background" aria-hidden="true">
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+    <div class="stars" id="stars"></div>
+  </div>
+
+  <!-- Màn hình mở quà -->
+  <section class="welcome" id="welcome">
+    <p class="eyebrow">13.04.2026 · Gửi riêng Duyên</p>
+
+    <div class="welcome-heart" aria-hidden="true">♥</div>
+
+    <h1>
+      Một món quà nhỏ
+      <em>cho bà chã của anh</em>
+    </h1>
+
+    <p class="welcome-description">
+      Gần bốn tháng không quá dài, nhưng đủ để em trở thành
+      một người rất đặc biệt.
+    </p>
+
+    <button class="primary-button" id="openGift" type="button">
+      Mở món quà
+      <span aria-hidden="true">→</span>
+    </button>
+
+    <small>Bấm mở quà để bắt đầu phát nhạc ♫</small>
+  </section>
+
+  <!-- Nội dung chính -->
+  <main class="main-content" id="mainContent" hidden>
+    <nav class="topbar">
+      <a class="logo" href="#home">D <span>♥</span> B</a>
+
+      <button class="music-button" id="musicButton" type="button">
+        <span class="music-icon" aria-hidden="true">♫</span>
+        <span id="musicText">Đang phát · Có Em</span>
+      </button>
+    </nav>
+
+    <!-- Trang giới thiệu -->
+    <section class="hero" id="home">
+      <p class="eyebrow">Một câu chuyện bắt đầu từ 13.04.2026</p>
+
+      <div class="anniversary-label">
+        ✦ Kỷ niệm gần 4 tháng hai mình bên nhau ✦
+      </div>
+
+      <h2 class="couple-name">
+        <span>Bà chã Duyên</span>
+        <i aria-label="và">♥</i>
+        <span>Ông chã Bu</span>
+      </h2>
+
+      <p class="hero-description">
+        Dù mình gặp nhau qua một chiếc màn hình,
+        niềm vui em mang đến cho anh vẫn luôn là thật.
+      </p>
+
+      <!-- Bộ đếm thời gian -->
+      <div class="counter-box">
+        <p>Chúng mình đã bên nhau</p>
+
+        <div class="counter">
+          <div>
+            <strong id="days">00</strong>
+            <span>ngày</span>
+          </div>
+
+          <div>
+            <strong id="hours">00</strong>
+            <span>giờ</span>
+          </div>
+
+          <div>
+            <strong id="minutes">00</strong>
+            <span>phút</span>
+          </div>
+
+          <div>
+            <strong id="seconds">00</strong>
+            <span>giây</span>
+          </div>
+        </div>
+      </div>
+
+      <a class="scroll-down" href="#story">
+        Cuộn xuống để xem tiếp ↓
+      </a>
+    </section>
+
+    <!-- Giới thiệu câu chuyện -->
+    <section class="content-card" id="story">
+      <span class="section-number">01</span>
+      <p class="eyebrow">Gần bốn tháng của chúng mình</p>
+
+      <h3>
+        Một khoảng thời gian nhỏ,<br>
+        một niềm vui thật to.
+      </h3>
+
+      <p>
+        Từ những tin nhắn đầu tiên đến những lần nói chuyện
+        chẳng muốn dừng, cảm ơn em vì đã khiến mỗi ngày của anh
+        có thêm một màu xanh thật đẹp.
+      </p>
+    </section>
+
+    <!-- Dòng thời gian -->
+    <section class="journey">
+      <header class="section-heading">
+        <span class="section-number">02</span>
+        <p class="eyebrow">Hành trình của hai đứa</p>
+
+        <h3>
+          Từng ngày một,<br>
+          mình viết nên chuyện của mình.
+        </h3>
+      </header>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-date">13<br><small>04</small></div>
+          <div>
+            <p>13.04.2026</p>
+            <h4>Ngày câu chuyện bắt đầu</h4>
+            <span>
+              Từ hai người quen nhau qua mạng, rồi dần trở thành
+              một phần trong ngày của nhau.
+            </span>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-date">♥</div>
+          <div>
+            <p>Những ngày sau đó</p>
+            <h4>Tin nhắn trở thành điều mong chờ</h4>
+            <span>
+              Khoảng cách vẫn ở đó, nhưng mỗi cuộc trò chuyện
+              đều mang đến một niềm vui rất thật.
+            </span>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-date">04<br><small>tháng</small></div>
+          <div>
+            <p>Hôm nay</p>
+            <h4>Gần bốn tháng, vẫn là hai mình</h4>
+            <span>
+              Một cột mốc nho nhỏ để ông chã cảm ơn bà chã
+              vì đã luôn ở đây.
+            </span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Ba lời chúc -->
+    <section class="wishes">
+      <header class="section-heading center">
+        <span class="section-number">03</span>
+        <p class="eyebrow">Ba điều anh mong</p>
+        <h3>Dành riêng cho bấy bì.</h3>
+      </header>
+
+      <div class="wish-grid">
+        <article>
+          <b>☀</b>
+          <h4>Luôn vui tươiii</h4>
+          <p>Mong nụ cười lúc nào cũng ở trên môi em.</p>
+        </article>
+
+        <article>
+          <b>✦</b>
+          <h4>Ngày càng xinh đẹp</h4>
+          <p>Dù trong mắt anh, bà chã đã đáng yêu nhất rồi.</p>
+        </article>
+
+        <article>
+          <b>♥</b>
+          <h4>Được thương thật nhiều</h4>
+          <p>Và ông chã xin nhận một phần việc đó nha.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Lá thư -->
+    <section class="letter-section">
+      <header class="section-heading">
+        <span class="section-number">04</span>
+        <p class="eyebrow">Có vài điều muốn nói</p>
+
+        <h3>
+          Một lá thư nhỏ<br>
+          gửi bà chã Duyên.
+        </h3>
+
+        <p>
+          Không cần lời lẽ thật hoàn hảo,
+          chỉ cần là những điều anh thật lòng muốn gửi đến em.
+        </p>
+      </header>
+
+      <div class="letter-area">
+        <button class="envelope-button" id="openLetter" type="button">
+          <span class="envelope-icon" aria-hidden="true">💌</span>
+          <strong>Chạm để mở lá thư</strong>
+        </button>
+
+        <article class="love-letter" id="loveLetter" hidden>
+          <small>Gần 4 tháng bên nhau · 2026</small>
+
+          <h4>Gửi bà chã Duyên của anh 💙</h4>
+
+          <p>
+            Người gì đâu mà vừa xinh đẹp, vừa dễ thưn, lại còn
+            hiền lành nữa. Mỗi tội cái mỏ đôi lúc hơi hỗn hỗn
+            một xíu thôi =)))) Nhưng mà hong sao, bấy bì của anh
+            vẫn ngoan hiền, lễ phép và đáng yêu nhất.
+          </p>
+
+          <p>
+            Chúc cho bấy bì của anh ngày càng xinh đẹp, lúc nào
+            cũng vui tươiii, luôn được làm những điều mình thích
+            và mỗi ngày đều có thật nhiều niềm vui.
+          </p>
+
+          <p>
+            Chết rồi, tới đây anh lại hong biết nói gì nữa
+            =))))))))))), nhưng thật sự rất vui vì đã gặp được em
+            và có em bên cạnh trong suốt gần 4 tháng vừa qua dù
+            chỉ quen qua mạng nhưng vẫn cảm thấy vui.
+          </p>
+
+          <p>
+            Cảm ơn em vì đã đến và trở thành một phần thật đặc biệt
+            trong cuộc sống của anh.
+          </p>
+
+          <p>Nói chứ… anh yêu bà chã của anh nhất &lt;3</p>
+
+          <footer>— Ông chã Bu</footer>
+        </article>
+      </div>
+    </section>
+
+    <!-- Lời nhắn cuối -->
+    <section class="final-section">
+      <p class="eyebrow">Một điều cuối cùng</p>
+
+      <button class="final-heart" id="finalHeart" type="button">
+        ♥
+      </button>
+
+      <p id="heartInstruction">Chạm vào trái tim đi bà chã</p>
+
+      <div class="final-message" id="finalMessage" hidden>
+        <h3>
+          Anh yêu bà chã<br>
+          của anh nhất &lt;3
+        </h3>
+
+        <p>Cảm ơn em vì đã đến bên anh.</p>
+      </div>
+
+      <small>Duyên ♥ Bu · 13.04.2026</small>
+    </section>
+  </main>
+
+  <!-- Nhạc Có Em – Madihu ft. Low G -->
+  <iframe
+    id="musicPlayer"
+    class="music-player"
+    title="Có Em — Madihu ft. Low G"
+    data-src="https://www.youtube.com/embed/DcCISK3sCYg?autoplay=1&loop=1&playlist=DcCISK3sCYg&controls=0"
+    allow="autoplay; encrypted-media"
+  ></iframe>
+</body>
+</html>
