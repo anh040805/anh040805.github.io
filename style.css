@@ -1340,3 +1340,292 @@ section {
     animation: none !important;
   }
 }
+/* ===== GÓI HIỆU ỨNG ĐỘNG ===== */
+
+/* Thanh màu theo vị trí cuộn */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 0;
+  height: 4px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #35c8ff,
+    #8d72ff,
+    #ff72bc,
+    #ffe783
+  );
+  box-shadow:
+    0 0 8px #42c8ff,
+    0 0 18px rgba(255, 100, 190, 0.7);
+}
+
+/* Bong bóng ánh sáng bay trong nền */
+
+.ambient-orb-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ambient-orb {
+  position: absolute;
+  left: var(--orb-left);
+  top: var(--orb-top);
+  width: var(--orb-size);
+  height: var(--orb-size);
+  border-radius: 50%;
+  opacity: 0.3;
+  filter:
+    blur(0.5px)
+    drop-shadow(0 0 12px rgba(106, 204, 255, 0.5));
+  will-change: transform, opacity;
+  animation: orb-float var(--orb-duration) ease-in-out infinite;
+  animation-delay: var(--orb-delay);
+}
+
+@keyframes orb-float {
+  0%,
+  100% {
+    opacity: 0.16;
+    transform: translate3d(0, 0, 0) scale(0.75);
+  }
+
+  50% {
+    opacity: 0.48;
+    transform:
+      translate3d(var(--orb-x), var(--orb-y), 0)
+      scale(1.25);
+  }
+}
+
+/* Hạt sáng bung ra khi chạm màn hình */
+
+.tap-spark {
+  position: fixed;
+  z-index: 999999;
+  left: var(--spark-left);
+  top: var(--spark-top);
+  pointer-events: none;
+  font-size: var(--spark-size);
+  line-height: 1;
+  animation: tap-spark 850ms ease-out forwards;
+}
+
+@keyframes tap-spark {
+  from {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%)
+      scale(0.25)
+      rotate(0deg);
+  }
+
+  to {
+    opacity: 0;
+    transform:
+      translate(
+        calc(-50% + var(--spark-x)),
+        calc(-50% + var(--spark-y))
+      )
+      scale(1.3)
+      rotate(var(--spark-spin));
+  }
+}
+
+/* Trái tim phát sóng ánh sáng */
+
+.final-heart {
+  position: relative !important;
+}
+
+.final-heart::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: -2px !important;
+  border: 2px solid rgba(99, 203, 255, 0.72) !important;
+  border-radius: 50% !important;
+  pointer-events: none !important;
+  animation: heart-wave 2.2s ease-out infinite !important;
+}
+
+@keyframes heart-wave {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.88);
+  }
+
+  75%,
+  100% {
+    opacity: 0;
+    transform: scale(1.48);
+  }
+}
+
+/* Ánh sáng quét ngang phong thư */
+
+.envelope-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.envelope-button::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -60%;
+  left: -90%;
+  width: 42%;
+  height: 220%;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+  transform: rotate(22deg);
+  animation: envelope-shine 3.8s ease-in-out infinite;
+}
+
+@keyframes envelope-shine {
+  0%,
+  35% {
+    left: -90%;
+  }
+
+  65%,
+  100% {
+    left: 150%;
+  }
+}
+
+/* Số bộ đếm nảy lên */
+
+.counter-pop {
+  animation: counter-pop 350ms ease-out;
+}
+
+@keyframes counter-pop {
+  0% {
+    opacity: 0.4;
+    transform: translateY(-8px) scale(0.78);
+  }
+
+  60% {
+    transform: translateY(2px) scale(1.12);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Nội dung hiện dần khi cuộn */
+
+.motion-ready .motion-section {
+  opacity: 0;
+  filter: blur(7px);
+  transform: translateY(45px) scale(0.97);
+  transition:
+    opacity 0.85s ease,
+    filter 0.85s ease,
+    transform 0.85s cubic-bezier(0.2, 0.75, 0.25, 1);
+  transition-delay: var(--motion-delay);
+}
+
+.motion-ready .motion-section.motion-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0) scale(1);
+}
+
+/* Thẻ nghiêng nhẹ theo chuột máy tính */
+
+.motion-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition:
+    transform 180ms ease,
+    box-shadow 250ms ease;
+}
+
+/* Tên hai người bay nhẹ */
+
+.couple-name {
+  animation:
+    name-colors 6s linear infinite,
+    title-floating 3.6s ease-in-out infinite !important;
+}
+
+@keyframes title-floating {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+/* Sóng sáng khi bấm nút */
+
+.primary-button,
+.envelope-button,
+#musicButton {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-ripple {
+  position: absolute;
+  z-index: 5;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.7);
+  transform: translate(-50%, -50%) scale(0);
+  animation: button-ripple 700ms ease-out forwards;
+}
+
+@keyframes button-ripple {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(16);
+  }
+}
+
+@media (max-width: 720px) {
+  .ambient-orb {
+    opacity: 0.22;
+  }
+
+  .motion-card {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-orb,
+  .tap-spark,
+  .button-ripple,
+  .final-heart::after {
+    display: none !important;
+  }
+
+  .motion-ready .motion-section {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}
