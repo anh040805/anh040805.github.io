@@ -193,9 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ===== Gói hiệu ứng động ===== */
 
   function addDynamicEffects() {
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const reduceMotion = false;
 
     /* Thanh tiến trình cuộn */
 
