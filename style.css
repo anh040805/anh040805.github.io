@@ -868,3 +868,73 @@ section {
   line-height: 1;
   transform: translateY(-1px);
 }
+/* Vẽ trái tim cân đối, không phụ thuộc font điện thoại */
+
+.final-heart {
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+  text-indent: 0 !important;
+}
+
+.final-heart > * {
+  display: none !important;
+}
+
+.final-heart::before {
+  content: "" !important;
+  display: block !important;
+  position: static !important;
+  width: 52px !important;
+  height: 48px !important;
+  margin: 0 !important;
+  background: #ffffff !important;
+  transform: none !important;
+
+  -webkit-clip-path: polygon(
+    50% 100%,
+    8% 62%,
+    2% 50%,
+    0 37%,
+    2% 23%,
+    9% 11%,
+    20% 3%,
+    32% 1%,
+    43% 7%,
+    50% 18%,
+    57% 7%,
+    68% 1%,
+    80% 3%,
+    91% 11%,
+    98% 23%,
+    100% 37%,
+    98% 50%,
+    92% 62%
+  );
+
+  clip-path: polygon(
+    50% 100%,
+    8% 62%,
+    2% 50%,
+    0 37%,
+    2% 23%,
+    9% 11%,
+    20% 3%,
+    32% 1%,
+    43% 7%,
+    50% 18%,
+    57% 7%,
+    68% 1%,
+    80% 3%,
+    91% 11%,
+    98% 23%,
+    100% 37%,
+    98% 50%,
+    92% 62%
+  );
+}
+
+.final-heart::after {
+  content: none !important;
+}
