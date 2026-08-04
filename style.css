@@ -938,3 +938,141 @@ section {
 .final-heart::after {
   content: none !important;
 }
+/* Hoa lá bay nhẹ */
+
+.flower-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-flower {
+  position: absolute;
+  top: -15vh;
+  left: var(--left);
+  font-size: var(--flower-size);
+  opacity: 0.65;
+  filter: drop-shadow(0 0 8px rgba(255, 160, 220, 0.55));
+  will-change: transform;
+  animation: flower-fall linear infinite;
+}
+
+@keyframes flower-fall {
+  0% {
+    transform: translate3d(0, -15vh, 0) rotate(0deg);
+  }
+
+  50% {
+    transform:
+      translate3d(var(--drift), 55vh, 0)
+      rotate(180deg);
+  }
+
+  100% {
+    transform:
+      translate3d(var(--drift-back), 115vh, 0)
+      rotate(360deg);
+  }
+}
+
+/* Nút đổi màu nhẹ */
+
+.primary-button,
+.envelope-button {
+  background: linear-gradient(
+    120deg,
+    #28a9ff,
+    #7567ff,
+    #ff79bd,
+    #28a9ff
+  ) !important;
+  background-size: 300% 300% !important;
+  animation: romantic-colors 7s ease infinite;
+}
+
+@keyframes romantic-colors {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Tên hai người có màu xanh tím hồng */
+
+.couple-name {
+  color: #ffffff;
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #75d8ff,
+    #bd9cff,
+    #ff9dcc,
+    #ffffff
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: name-colors 6s linear infinite;
+}
+
+@keyframes name-colors {
+  to {
+    background-position: 250% center;
+  }
+}
+
+/* Thẻ nội dung sáng màu hơn */
+
+.content-card,
+.timeline-item,
+.wish-card,
+.final-message {
+  border-color: rgba(190, 145, 255, 0.32) !important;
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.28),
+    0 0 28px rgba(58, 174, 255, 0.1),
+    0 0 38px rgba(255, 105, 185, 0.07) !important;
+}
+
+/* Trái tim chuyển màu */
+
+.final-heart::before {
+  background: linear-gradient(
+    135deg,
+    #ffffff,
+    #72d5ff,
+    #b795ff,
+    #ff83bd
+  ) !important;
+  background-size: 250% 250% !important;
+  animation: romantic-colors 4s ease infinite;
+}
+
+.final-heart {
+  box-shadow:
+    0 0 30px rgba(62, 183, 255, 0.5),
+    0 0 55px rgba(200, 110, 255, 0.22),
+    inset 0 0 25px rgba(255, 255, 255, 0.08) !important;
+}
+
+@media (max-width: 720px) {
+  .floating-flower {
+    opacity: 0.52;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-flower {
+    display: none;
+  }
+}
