@@ -190,6 +190,316 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   createShootingStars();
+    /* ===== Gói hiệu ứng động ===== */
+
+  function addDynamicEffects() {
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    /* Thanh tiến trình cuộn */
+
+    const scrollProgress = document.createElement("div");
+    scrollProgress.className = "scroll-progress";
+    scrollProgress.setAttribute("aria-hidden", "true");
+    document.body.appendChild(scrollProgress);
+
+    let scrollTicking = false;
+
+    function updateScrollProgress() {
+      const pageHeight =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+      const progress =
+        pageHeight > 0
+          ? (window.scrollY / pageHeight) * 100
+          : 0;
+
+      scrollProgress.style.width = `${progress}%`;
+      scrollTicking = false;
+    }
+
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!scrollTicking) {
+          requestAnimationFrame(updateScrollProgress);
+          scrollTicking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    setTimeout(updateScrollProgress, 100);
+
+    if (reduceMotion) return;
+
+    /* Bong bóng ánh sáng */
+
+    const orbLayer = document.createElement("div");
+    const isMobile = window.matchMedia(
+      "(max-width: 720px)"
+    ).matches;
+
+    const orbCount = isMobile ? 7 : 13;
+    const orbColors = [
+      "rgba(62, 194, 255, 0.9)",
+      "rgba(142, 105, 255, 0.85)",
+      "rgba(255, 101, 183, 0.8)",
+      "rgba(255, 224, 120, 0.75)"
+    ];
+
+    orbLayer.className = "ambient-orb-layer";
+    orbLayer.setAttribute("aria-hidden", "true");
+
+    for (let i = 0; i < orbCount; i++) {
+      const orb = document.createElement("span");
+      const color =
+        orbColors[Math.floor(Math.random() * orbColors.length)];
+      const duration = 7 + Math.random() * 8;
+
+      orb.className = "ambient-orb";
+
+      orb.style.setProperty(
+        "--orb-left",
+        `${Math.random() * 100}%`
+      );
+
+      orb.style.setProperty(
+        "--orb-top",
+        `${Math.random() * 100}%`
+      );
+
+      orb.style.setProperty(
+        "--orb-size",
+        `${7 + Math.random() * 22}px`
+      );
+
+      orb.style.setProperty(
+        "--orb-x",
+        `${Math.random() * 100 - 50}px`
+      );
+
+      orb.style.setProperty(
+        "--orb-y",
+        `${Math.random() * 130 - 65}px`
+      );
+
+      orb.style.setProperty(
+        "--orb-duration",
+        `${duration}s`
+      );
+
+      orb.style.setProperty(
+        "--orb-delay",
+        `-${Math.random() * duration}s`
+      );
+
+      orb.style.background =
+        `radial-gradient(circle at 35% 35%, ` +
+        `#ffffff, ${color} 32%, transparent 72%)`;
+
+      orbLayer.appendChild(orb);
+    }
+
+    document.body.appendChild(orbLayer);
+
+    /* Hạt sáng khi nhấp màn hình */
+
+    const sparkSymbols = ["✦", "✧", "💙", "💜", "🌸"];
+
+    document.addEventListener("click", function (event) {
+      if (
+        event.target.closest &&
+        event.target.closest("#finalHeart")
+      ) {
+        return;
+      }
+
+      if (event.clientX === 0 && event.clientY === 0) return;
+
+      const sparkCount = isMobile ? 5 : 8;
+
+      for (let i = 0; i < sparkCount; i++) {
+        const spark = document.createElement("span");
+        const angle =
+          (Math.PI * 2 * i) / sparkCount +
+          Math.random() * 0.35;
+
+        const distance = 35 + Math.random() * 55;
+
+        spark.className = "tap-spark";
+        spark.textContent =
+          sparkSymbols[
+            Math.floor(Math.random() * sparkSymbols.length)
+          ];
+
+        spark.style.setProperty(
+          "--spark-left",
+          `${event.clientX}px`
+        );
+
+        spark.style.setProperty(
+          "--spark-top",
+          `${event.clientY}px`
+        );
+
+        spark.style.setProperty(
+          "--spark-x",
+          `${Math.cos(angle) * distance}px`
+        );
+
+        spark.style.setProperty(
+          "--spark-y",
+          `${Math.sin(angle) * distance}px`
+        );
+
+        spark.style.setProperty(
+          "--spark-spin",
+          `${Math.random() * 180 - 90}deg`
+        );
+
+        spark.style.setProperty(
+          "--spark-size",
+          `${11 + Math.random() * 8}px`
+        );
+
+        document.body.appendChild(spark);
+
+        setTimeout(function () {
+          spark.remove();
+        }, 900);
+      }
+    });
+
+    /* Nút có sóng sáng */
+
+    const rippleButtons = document.querySelectorAll(
+      ".primary-button, .envelope-button, #musicButton"
+    );
+
+    rippleButtons.forEach(function (button) {
+      button.addEventListener("pointerdown", function (event) {
+        const rectangle = button.getBoundingClientRect();
+        const ripple = document.createElement("span");
+
+        ripple.className = "button-ripple";
+        ripple.style.left =
+          `${event.clientX - rectangle.left}px`;
+        ripple.style.top =
+          `${event.clientY - rectangle.top}px`;
+
+        button.appendChild(ripple);
+
+        setTimeout(function () {
+          ripple.remove();
+        }, 750);
+      });
+    });
+
+    /* Làm số bộ đếm nảy */
+
+    ["days", "hours", "minutes", "seconds"].forEach(
+      function (id) {
+        const numberElement = document.getElementById(id);
+
+        if (!numberElement) return;
+
+        const numberObserver = new MutationObserver(function () {
+          numberElement.classList.remove("counter-pop");
+          void numberElement.offsetWidth;
+          numberElement.classList.add("counter-pop");
+        });
+
+        numberObserver.observe(numberElement, {
+          childList: true
+        });
+      }
+    );
+
+    /* Hiện từng phần khi cuộn */
+
+    document.body.classList.add("motion-ready");
+
+    const motionSections = document.querySelectorAll(
+      "#mainContent section"
+    );
+
+    if ("IntersectionObserver" in window) {
+      const motionObserver = new IntersectionObserver(
+        function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("motion-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.08
+        }
+      );
+
+      motionSections.forEach(function (section, index) {
+        section.classList.add("motion-section");
+        section.style.setProperty(
+          "--motion-delay",
+          `${(index % 3) * 90}ms`
+        );
+
+        motionObserver.observe(section);
+      });
+    } else {
+      motionSections.forEach(function (section) {
+        section.classList.add(
+          "motion-section",
+          "motion-visible"
+        );
+      });
+    }
+
+    /* Thẻ nghiêng theo chuột */
+
+    if (window.matchMedia("(pointer: fine)").matches) {
+      const motionCards = document.querySelectorAll(
+        ".content-card, .wish-card, .timeline-item, .final-message"
+      );
+
+      motionCards.forEach(function (card) {
+        card.classList.add("motion-card");
+
+        card.addEventListener("pointermove", function (event) {
+          const rectangle = card.getBoundingClientRect();
+
+          const x =
+            (event.clientX - rectangle.left) /
+            rectangle.width;
+
+          const y =
+            (event.clientY - rectangle.top) /
+            rectangle.height;
+
+          const rotateY = (x - 0.5) * 7;
+          const rotateX = (0.5 - y) * 7;
+
+          card.style.transform =
+            `perspective(900px) ` +
+            `rotateX(${rotateX}deg) ` +
+            `rotateY(${rotateY}deg) ` +
+            `translateY(-4px)`;
+        });
+
+        card.addEventListener("pointerleave", function () {
+          card.style.transform =
+            "perspective(900px) rotateX(0) rotateY(0)";
+        });
+      });
+    }
+  }
+
+  addDynamicEffects();
+  
   updateLoveCounter();
   setInterval(updateLoveCounter, 1000);
 
