@@ -814,3 +814,28 @@ section {
     transition-duration: 0.01ms !important;
   }
 }
+/* Căn giữa tên hai đứa */
+
+.hero {
+  justify-items: center;
+  text-align: center;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.couple-name {
+  display: block;
+  width: 100%;
+  margin: 8px auto 20px;
+  text-align: center;
+  white-space: nowrap;
+  font-size: clamp(1.45rem, 6.8vw, 5.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
