@@ -145,6 +145,51 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   createFlowerLayer();
+    /* Tạo sao băng */
+
+  function createShootingStars() {
+    const starsContainer = document.getElementById("stars");
+
+    if (
+      !starsContainer ||
+      starsContainer.querySelector(".shooting-star")
+    ) {
+      return;
+    }
+
+    const isMobile = window.matchMedia(
+      "(max-width: 720px)"
+    ).matches;
+
+    const shootingStarCount = isMobile ? 4 : 7;
+
+    for (let i = 0; i < shootingStarCount; i++) {
+      const shootingStar = document.createElement("span");
+      const duration = 8 + Math.random() * 7;
+
+      shootingStar.className = "shooting-star";
+      shootingStar.setAttribute("aria-hidden", "true");
+
+      shootingStar.style.setProperty(
+        "--shoot-top",
+        `${5 + Math.random() * 50}%`
+      );
+
+      shootingStar.style.setProperty(
+        "--shoot-duration",
+        `${duration}s`
+      );
+
+      shootingStar.style.setProperty(
+        "--shoot-delay",
+        `-${Math.random() * duration}s`
+      );
+
+      starsContainer.appendChild(shootingStar);
+    }
+  }
+
+  createShootingStars();
   updateLoveCounter();
   setInterval(updateLoveCounter, 1000);
 
