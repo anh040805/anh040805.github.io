@@ -503,39 +503,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Điều khiển bài Có Em */
 
-  const defaultMusicSource =
-    "https://www.youtube.com/embed/DcCISK3sCYg?autoplay=1&loop=1&playlist=DcCISK3sCYg&controls=0";
+    let musicPlaying = false;
 
-  let musicPlaying = false;
-
-  function playMusic() {
-    if (!musicPlayer) return;
-
-    const musicSource =
-      musicPlayer.getAttribute("data-src") || defaultMusicSource;
-
-    musicPlayer.setAttribute("src", musicSource);
-    musicPlaying = true;
+  function updateMusicButton(isPlaying) {
+    musicPlaying = isPlaying;
 
     if (musicText) {
-      musicText.textContent = "Tắt nhạc";
+      musicText.textContent = isPlaying
+        ? "Tắt nhạc"
+        : "Bật nhạc";
     }
 
     if (musicButton) {
-      musicButton.setAttribute("aria-pressed", "true");
+      musicButton.setAttribute(
+        "aria-pressed",
+        String(isPlaying)
+      );
+    }
+  }
+
+  async function playMusic() {
+    if (!musicPlayer) return;
+
+    try {
+      musicPlayer.volume = 0.75;
+      await musicPlayer.play();
+      updateMusicButton(true);
+    } catch (error) {
+      updateMusicButton(false);
+
+      if (musicText) {
+        musicText.textContent = "Nhấn để phát nhạc";
+      }
     }
   }
 
   function stopMusic() {
     if (!musicPlayer) return;
 
-    musicPlayer.removeAttribute("src");
-    musicPlaying = false;
+    musicPlayer.pause();
+    updateMusicButton(false);
+  }
+
+  musicPlayer.addEventListener("error", function () {
+    updateMusicButton(false);
 
     if (musicText) {
-      musicText.textContent = "Bật nhạc";
+      musicText.textContent = "Không tải được nhạc";
     }
-
+  });
     if (musicButton) {
       musicButton.setAttribute("aria-pressed", "false");
     }
