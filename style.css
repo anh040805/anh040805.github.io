@@ -801,7 +801,7 @@ section {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce-disabled) {
   html {
     scroll-behavior: auto;
   }
@@ -1071,7 +1071,7 @@ section {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce-disabled) {
   .floating-flower {
     display: none;
   }
@@ -1329,7 +1329,7 @@ section {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce-disabled) {
   .shooting-star {
     display: none;
   }
@@ -1614,7 +1614,7 @@ section {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce-disabled) {
   .ambient-orb,
   .tap-spark,
   .button-ripple,
